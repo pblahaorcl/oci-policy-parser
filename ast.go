@@ -18,8 +18,6 @@ type BaseNode struct {
 	Id        int
 	currChild int
 	children  []Node
-	Token     string
-	NodeType
 }
 
 // NodeType supported AST nodes
