@@ -1,0 +1,183 @@
+
+state 0
+	$accept: .statement $end 
+
+	ALLOW  shift 2
+	.  error
+
+	statement  goto 1
+
+state 1
+	$accept:  statement.$end 
+
+	$end  accept
+	.  error
+
+
+state 2
+	statement:  ALLOW.subj TO verb resource IN location WHERE condition 
+	statement:  ALLOW.subj TO verb resource IN location 
+
+	SUBJECT  shift 4
+	.  error
+
+	subj  goto 3
+
+state 3
+	statement:  ALLOW subj.TO verb resource IN location WHERE condition 
+	statement:  ALLOW subj.TO verb resource IN location 
+
+	TO  shift 5
+	.  error
+
+
+state 4
+	subj:  SUBJECT.v 
+
+	VARIABLE  shift 7
+	.  error
+
+	v  goto 6
+
+state 5
+	statement:  ALLOW subj TO.verb resource IN location WHERE condition 
+	statement:  ALLOW subj TO.verb resource IN location 
+
+	VERB  shift 9
+	.  error
+
+	verb  goto 8
+
+state 6
+	subj:  SUBJECT v.    (6)
+
+	.  reduce 6 (src line 61)
+
+
+state 7
+	v:  VARIABLE.    (7)
+
+	.  reduce 7 (src line 68)
+
+
+state 8
+	statement:  ALLOW subj TO verb.resource IN location WHERE condition 
+	statement:  ALLOW subj TO verb.resource IN location 
+
+	RESOURCE  shift 11
+	.  error
+
+	resource  goto 10
+
+state 9
+	verb:  VERB.    (5)
+
+	.  reduce 5 (src line 54)
+
+
+state 10
+	statement:  ALLOW subj TO verb resource.IN location WHERE condition 
+	statement:  ALLOW subj TO verb resource.IN location 
+
+	IN  shift 12
+	.  error
+
+
+state 11
+	resource:  RESOURCE.    (4)
+
+	.  reduce 4 (src line 47)
+
+
+state 12
+	statement:  ALLOW subj TO verb resource IN.location WHERE condition 
+	statement:  ALLOW subj TO verb resource IN.location 
+
+	VARIABLE  shift 7
+	.  error
+
+	location  goto 13
+	v  goto 14
+
+state 13
+	statement:  ALLOW subj TO verb resource IN location.WHERE condition 
+	statement:  ALLOW subj TO verb resource IN location.    (2)
+
+	WHERE  shift 15
+	.  reduce 2 (src line 33)
+
+
+state 14
+	location:  v.    (3)
+
+	.  reduce 3 (src line 40)
+
+
+state 15
+	statement:  ALLOW subj TO verb resource IN location WHERE.condition 
+
+	VARIABLE  shift 7
+	.  error
+
+	condition  goto 16
+	v  goto 17
+
+state 16
+	statement:  ALLOW subj TO verb resource IN location WHERE condition.    (1)
+
+	.  reduce 1 (src line 27)
+
+
+state 17
+	condition:  v.op value 
+
+	EQ  shift 19
+	NE  shift 20
+	.  error
+
+	op  goto 18
+
+state 18
+	condition:  v op.value 
+
+	VALUE  shift 22
+	.  error
+
+	value  goto 21
+
+state 19
+	op:  EQ.    (9)
+
+	.  reduce 9 (src line 82)
+
+
+state 20
+	op:  NE.    (10)
+
+	.  reduce 10 (src line 87)
+
+
+state 21
+	condition:  v op value.    (11)
+
+	.  reduce 11 (src line 93)
+
+
+state 22
+	value:  VALUE.    (8)
+
+	.  reduce 8 (src line 75)
+
+
+14 terminals, 10 nonterminals
+12 grammar rules, 23/16000 states
+0 shift/reduce, 0 reduce/reduce conflicts reported
+59 working sets used
+memory: parser 12/240000
+1 extra closures
+13 shift entries, 1 exceptions
+11 goto entries
+0 entries saved by goto default
+Optimizer space used: output 22/240000
+22 table entries, 0 zero
+maximum spread: 14, maximum offset: 15

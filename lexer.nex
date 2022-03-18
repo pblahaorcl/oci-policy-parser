@@ -1,0 +1,25 @@
+/Allow|ALLOW|allow/ { return ALLOW }
+/to|TO/             { return TO }
+/in/                { return IN }
+/where/             { return WHERE }
+/manage|use|read/   { lval.s = yylex.Text(); return VERB }
+/vcns|subnets/      { lval.s = yylex.Text(); return RESOURCE }
+/group/             { return SUBJECT }
+/[0-9]*/             { lval.s = yylex.Text(); return VALUE }
+/[a-z][a-z0-9]*/    { lval.s = yylex.Text(); return VARIABLE }
+/==/                { lval.s = yylex.Text(); return EQ }
+/!=/                { lval.s = yylex.Text(); return NE }
+/[ \t\n]+/          { /* eat up whitespace */ }
+/./                 { fmt.Sprintf("Unrecognized character: %s", yylex.Text()) }
+//
+package main
+import "fmt"
+
+func (yylex Lexer) Error(e string) {
+	yylex.p.err = &SyntaxError{
+		Row: yylex.Line() + 1,
+		Col: yylex.Column(),
+		Msg: e,
+	}
+}
+
