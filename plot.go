@@ -91,10 +91,7 @@ func GenerateDotFormat(node Node, outputfile string) error {
 	e := []string{}
 	l := []string{}
 	scan(node, &e, &l)
-	result += strings.Join(e, "\n")
-	result += "\n"
-	result += strings.Join(l, "\n")
-	result += "\n}"
+	result += fmt.Sprintf("%s \n %s \n}", strings.Join(e, "\n"), strings.Join(l, "\n"))
 	_, err = file.WriteString(result)
 	return err
 }

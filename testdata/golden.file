@@ -1,9 +1,9 @@
 digraph G {
 	 30 -> 28
-	 30 -> 29
-	 30 [label="Statement"];
+	 30 -> 29 
+ 	 30 [label="Statement"];
 	 28 [label="variable1"];
 	 30 [label="Statement"];
 	 29 [label="Verb
-read"];
+read"]; 
 }
