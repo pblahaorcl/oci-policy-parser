@@ -79,10 +79,10 @@ func (b *BaseNode) Right() Node {
 }
 
 // newTokenNode creates new AST node with nType
-func newTokenNode(nType NodeType, str string, n Node) Node {
+func newTokenNode(nType NodeType, str string, childs ...Node) Node {
 	b := CreateAstNode(count)
-	if n != nil {
-		b.AppendChild(n)
+	for _, ch := range childs {
+		b.AppendChild(c)
 	}
 
 	e := &TokenNode{
