@@ -456,14 +456,14 @@ yydefault:
 		yyDollar = yyS[yypt-9 : yypt+1]
 //line parser.y:29
 		{
-			yyVAL.node = newStatementNode(yyDollar[2].node, yyDollar[4].node, yyDollar[5].node, yyDollar[7].node, yyDollar[9].node)
+			yyVAL.node = newTokenNode(NODE_STATEMENT, "", yyDollar[2].node, yyDollar[4].node, yyDollar[5].node, yyDollar[7].node, yyDollar[9].node)
 			cast(yylex).SetAstRoot(yyVAL.node)
 		}
 	case 2:
 		yyDollar = yyS[yypt-7 : yypt+1]
 //line parser.y:34
 		{
-			yyVAL.node = newStatementNode(yyDollar[2].node, yyDollar[4].node, yyDollar[5].node, yyDollar[7].node, nil)
+			yyVAL.node = newTokenNode(NODE_STATEMENT, "", yyDollar[2].node, yyDollar[4].node, yyDollar[5].node, yyDollar[7].node, nil)
 			cast(yylex).SetAstRoot(yyVAL.node)
 		}
 	case 3:
@@ -518,7 +518,7 @@ yydefault:
 		yyDollar = yyS[yypt-3 : yypt+1]
 //line parser.y:95
 		{
-			yyVAL.node = newConditionNode(yyDollar[1].node, yyDollar[2].node, yyDollar[3].node)
+			yyVAL.node = newTokenNode(NODE_CONDITION, "", yyDollar[1].node, yyDollar[2].node, yyDollar[3].node)
 		}
 	}
 	goto yystack /* stack new state and value */

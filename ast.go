@@ -79,10 +79,10 @@ func (b *BaseNode) Right() Node {
 }
 
 // newTokenNode creates new AST node with nType
-func newTokenNode(nType NodeType, str string, n Node) Node {
+func newTokenNode(nType NodeType, str string, childs ...Node) Node {
 	b := CreateAstNode(count)
-	if n != nil {
-		b.AppendChild(n)
+	for _, ch := range childs {
+		b.AppendChild(ch)
 	}
 
 	e := &TokenNode{
@@ -91,40 +91,6 @@ func newTokenNode(nType NodeType, str string, n Node) Node {
 	}
 	if str != "" {
 		e.Token = str
-	}
-	count++
-	return e
-}
-
-// newStatementNode creates new NODE_STATEMENT node
-func newStatementNode(s Node, verb Node, r Node, v Node, c Node) Node {
-	b := CreateAstNode(count)
-
-	b.AppendChild(s)
-	b.AppendChild(verb)
-	b.AppendChild(r)
-	b.AppendChild(v)
-	if c != nil {
-		b.AppendChild(c)
-	}
-	e := &TokenNode{
-		BaseNode: b,
-		NodeType: NODE_STATEMENT,
-	}
-	count++
-	return e
-}
-
-// newConditionNode creates Condition type node
-func newConditionNode(variable Node, op Node, value Node) Node {
-	b := CreateAstNode(count)
-
-	b.AppendChild(variable)
-	b.AppendChild(op)
-	b.AppendChild(value)
-	e := &TokenNode{
-		BaseNode: b,
-		NodeType: NODE_CONDITION,
 	}
 	count++
 	return e
