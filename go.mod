@@ -1,4 +1,4 @@
-module yacc
+module github.com/pblahaorcl/oci-policy-parser
 
 go 1.17
 
