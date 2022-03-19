@@ -27,12 +27,12 @@ package main
 statement:
     ALLOW subj TO verb resource IN location WHERE condition
     {
-        $$ = newStatementNode($2, $4, $5, $7, $9)
+        $$ = newTokenNode(NODE_STATEMENT, "", $2, $4, $5, $7, $9)
         cast(yylex).SetAstRoot($$)
     }
     | ALLOW subj TO verb resource IN location
     {
-        $$ = newStatementNode($2, $4, $5, $7, nil)
+        $$ = newTokenNode(NODE_STATEMENT, "", $2, $4, $5, $7, nil)
         cast(yylex).SetAstRoot($$)
     }
     ;
@@ -93,7 +93,7 @@ op:
 condition:
     v op value
     {
-        $$ = newConditionNode($1, $2, $3)
+        $$ = newTokenNode(NODE_CONDITION, "", $1, $2, $3)
     }
     ;
 

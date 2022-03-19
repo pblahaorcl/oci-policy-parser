@@ -17,7 +17,7 @@ func TestPlotDot(t *testing.T) {
 	goldenFileName := "testdata/golden.file"
 	n1 := newTokenNode(NODE_VARIABLE, "variable1", nil)
 	n2 := newTokenNode(NODE_VERB, "read", nil)
-	root := newStatementNode(n1, n2, nil, nil, nil)
+	root := newTokenNode(NODE_STATEMENT, "", n1, n2)
 	err := GenerateDotFormat(root, testFileName)
 	if err != nil {
 		t.Fatal(err)

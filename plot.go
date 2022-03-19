@@ -34,7 +34,9 @@ func createLabel(node Node) (string, error) {
 		case NODE_VALUE:
 			label = n.Token
 		case NODE_CONDITION:
-			label = n.Token
+			label = "Condition"
+		case NODE_SUBJECT:
+			label = "Subject"
 		default:
 			label = "Unknown"
 		}
